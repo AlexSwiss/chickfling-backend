@@ -7,12 +7,12 @@ services:
       context: .
       dockerfile: ./Dockerfile.test
     depends_on:
-      - forum-postgres-test
+      - chickfling-postgres-test
       # - mysql_test
     networks:
-      - forum_test
+      - chickfling_test
 
-  forum-postgres-test:
+  chickfling-postgres-test:
     image: postgres:latest
     container_name: full_db_test_postgress
     environment:
@@ -25,7 +25,7 @@ services:
     volumes:
       - database_postgres_test:/var/lib/postgresql/data
     networks:
-      - forum_test
+      - chickfling_test
     
   # mysql_test:
   #   image: mysql:5.7
@@ -41,7 +41,7 @@ services:
   #   volumes:
   #     - database_mysql_test:/var/lib/mysql
   #   networks:
-  #     - forum_test
+  #     - chickfling_test
   
 volumes:
   api_test:
@@ -49,5 +49,5 @@ volumes:
   # database_mysql_test:
 
 networks:
-  forum_test:
+  chickfling_test:
     driver: bridge

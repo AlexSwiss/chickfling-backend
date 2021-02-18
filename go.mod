@@ -1,4 +1,4 @@
-module github.com/victorsteven/forum
+module github.com/AlexSwiss/chickfling
 
 go 1.12
 
@@ -33,6 +33,7 @@ require (
 	github.com/joho/godotenv v1.3.0
 	github.com/json-iterator/go v1.1.10 // indirect
 	github.com/klauspost/cpuid v1.3.1 // indirect
+	github.com/klauspost/cpuid/v2 v2.0.3 // indirect
 	github.com/kr/pty v1.1.8 // indirect
 	github.com/kr/text v0.2.0 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
@@ -40,7 +41,7 @@ require (
 	github.com/matcornic/hermes/v2 v2.1.0
 	github.com/mattn/go-runewidth v0.0.10 // indirect
 	github.com/mattn/go-sqlite3 v1.14.6 // indirect
-	github.com/minio/md5-simd v1.1.1 // indirect
+	github.com/minio/md5-simd v1.1.2 // indirect
 	github.com/minio/minio-go/v6 v6.0.57
 	github.com/mitchellh/copystructure v1.1.1 // indirect
 	github.com/mitchellh/mapstructure v1.1.2 // indirect
@@ -61,7 +62,8 @@ require (
 	github.com/twinj/uuid v1.0.0
 	github.com/ugorji/go v1.2.4 // indirect
 	github.com/vanng822/go-premailer v1.9.0 // indirect
-	golang.org/x/crypto v0.0.0-20201221181555-eec23a3978ad
+	golang.org/x/crypto v0.0.0-20210218145215-b8e89b74b9df
+	golang.org/x/sys v0.0.0-20210218155724-8ebf48af031b // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 	gopkg.in/ini.v1 v1.62.0 // indirect
 	gopkg.in/stretchr/testify.v1 v1.2.2 // indirect

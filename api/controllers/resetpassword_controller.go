@@ -7,11 +7,11 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/AlexSwiss/chickfling/api/mailer"
+	"github.com/AlexSwiss/chickfling/api/models"
+	"github.com/AlexSwiss/chickfling/api/security"
+	"github.com/AlexSwiss/chickfling/api/utils/formaterror"
 	"github.com/gin-gonic/gin"
-	"github.com/victorsteven/forum/api/mailer"
-	"github.com/victorsteven/forum/api/models"
-	"github.com/victorsteven/forum/api/security"
-	"github.com/victorsteven/forum/api/utils/formaterror"
 )
 
 func (server *Server) ForgotPassword(c *gin.Context) {

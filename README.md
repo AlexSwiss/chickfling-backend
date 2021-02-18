@@ -1,7 +1,7 @@
-### Forum-App-Go-Backend  [![CircleCI](https://circleci.com/gh/victorsteven/Forum-App-Go-Backend.svg?style=svg)](https://circleci.com/gh/victorsteven/Forum-App-Go-Backend)
+### chickfling-App-Go-Backend  [![CircleCI](https://circleci.com/gh/AlexSwiss/chickfling-App-Go-Backend.svg?style=svg)](https://circleci.com/gh/AlexSwiss/chickfling-App-Go-Backend)
  
 
-> This is a forum API built with Golang
+> This is a chickfling API built with Golang
 
 ## Getting Started
 
@@ -27,7 +27,7 @@
 
 ### Clone
 
-- Clone this project to your local machine `https://github.com/victorsteven/Forum-App-Go-Backend.git`
+- Clone this project to your local machine `https://github.com/AlexSwiss/chickfling-App-Go-Backend.git`
 
 
 ### Setup
@@ -52,7 +52,7 @@
 
   - Set the DB_HOST as follows in the .env file
     ```shell
-      $ DB_HOST=forum-postgres 
+      $ DB_HOST=chickfling-postgres 
     ```    
   ##### For Local Development:
   - Create a Dockerfile file in the root directory
@@ -103,6 +103,6 @@
 ## Author
 
 - Steven Victor
-- medium: medium.com/@victorsteven  
+- medium: medium.com/@AlexSwiss  
 - twitter: twitter.com/stevensunflash  
 - linkedin: linkedin.com/in/stevenchikodi

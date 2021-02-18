@@ -9,30 +9,31 @@ import (
 	"github.com/sendgrid/sendgrid-go/helpers/mail"
 )
 
-type sendMail struct {}
+type sendMail struct{}
 
 type SendMailer interface {
-	SendResetPassword(string, string, string, string, string)  (*EmailResponse, error)
+	SendResetPassword(string, string, string, string, string) (*EmailResponse, error)
 }
+
 var (
 	SendMail SendMailer = &sendMail{} //this is useful when we start testing
 )
 
 type EmailResponse struct {
-	Status int
+	Status   int
 	RespBody string
 }
 
 func (s *sendMail) SendResetPassword(ToUser string, FromAdmin string, Token string, Sendgridkey string, AppEnv string) (*EmailResponse, error) {
 	h := hermes.Hermes{
 		Product: hermes.Product{
-			Name: "SeamFlow",
-			Link: "https://seamflow.com",
+			Name: "ChickFling",
+			Link: "https://ChickFling.com",
 		},
 	}
 	var forgotUrl string
 	if os.Getenv("APP_ENV") == "production" {
-		forgotUrl = "https://seamflow.com/resetpassword/" + Token //this is the url of the frontend app
+		forgotUrl = "https://ChickFling.com/resetpassword/" + Token //this is the url of the frontend app
 	} else {
 		forgotUrl = "http://127.0.0.1:3000/resetpassword/" + Token //this is the url of the local frontend app
 	}
@@ -40,7 +41,7 @@ func (s *sendMail) SendResetPassword(ToUser string, FromAdmin string, Token stri
 		Body: hermes.Body{
 			Name: ToUser,
 			Intros: []string{
-				"Welcome to SeamFlow! Good to have you here.",
+				"Welcome to ChickFling! Good to have you here.",
 			},
 			Actions: []hermes.Action{
 				{
@@ -61,7 +62,7 @@ func (s *sendMail) SendResetPassword(ToUser string, FromAdmin string, Token stri
 	if err != nil {
 		return nil, err
 	}
-	from := mail.NewEmail("SeamFlow", FromAdmin)
+	from := mail.NewEmail("ChickFling", FromAdmin)
 	subject := "Reset Password"
 	to := mail.NewEmail("Reset Password", ToUser)
 	message := mail.NewSingleEmail(from, subject, to, emailBody, emailBody)

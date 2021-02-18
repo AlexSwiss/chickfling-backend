@@ -8,20 +8,23 @@ import (
 	"strings"
 	"time"
 
-	"github.com/victorsteven/forum/api/security"
+	"github.com/AlexSwiss/chickfling/api/security"
 
 	"github.com/badoux/checkmail"
 	"github.com/jinzhu/gorm"
 )
 
 type User struct {
-	ID         uint32    `gorm:"primary_key;auto_increment" json:"id"`
-	Username   string    `gorm:"size:255;not null;unique" json:"username"`
-	Email      string    `gorm:"size:100;not null;unique" json:"email"`
-	Password   string    `gorm:"size:100;not null;" json:"password"`
-	AvatarPath string    `gorm:"size:255;null;" json:"avatar_path"`
-	CreatedAt  time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"created_at"`
-	UpdatedAt  time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"updated_at"`
+	ID           uint32    `gorm:"primary_key;auto_increment" json:"id"`
+	Username     string    `gorm:"size:255;not null;unique" json:"username"`
+	Email        string    `gorm:"size:100;not null;unique" json:"email"`
+	Bio          string    `gorm:"size:355;not null;unique" json:"bio"`
+	Gender       string    `gorm:"size:100;not null;unique" json:"gender"`
+	Relationship string    `gorm:"size:100;not null;unique" json:"relationship"`
+	Password     string    `gorm:"size:100;not null;" json:"password"`
+	AvatarPath   string    `gorm:"size:255;null;" json:"avatar_path"`
+	CreatedAt    time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"created_at"`
+	UpdatedAt    time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"updated_at"`
 }
 
 func (u *User) BeforeSave() error {
@@ -36,6 +39,9 @@ func (u *User) BeforeSave() error {
 func (u *User) Prepare() {
 	u.Username = html.EscapeString(strings.TrimSpace(u.Username))
 	u.Email = html.EscapeString(strings.TrimSpace(u.Email))
+	u.Bio = html.EscapeString(strings.TrimSpace(u.Bio))
+	u.Gender = html.EscapeString(strings.TrimSpace(u.Gender))
+	u.Relationship = html.EscapeString(strings.TrimSpace(u.Relationship))
 	u.CreatedAt = time.Now()
 	u.UpdatedAt = time.Now()
 }
@@ -99,6 +105,14 @@ func (u *User) Validate(action string) map[string]string {
 		if u.Username == "" {
 			err = errors.New("Required Username")
 			errorMessages["Required_username"] = err.Error()
+		}
+		if u.Bio == "" {
+			err = errors.New("Enter your bio")
+			errorMessages["Required_bio"] = err.Error()
+		}
+		if u.Gender == "" {
+			err = errors.New("whats your gender?")
+			errorMessages["Required_gender"] = err.Error()
 		}
 		if u.Password == "" {
 			err = errors.New("Required Password")
@@ -167,9 +181,12 @@ func (u *User) UpdateAUser(db *gorm.DB, uid uint32) (*User, error) {
 
 		db = db.Debug().Model(&User{}).Where("id = ?", uid).Take(&User{}).UpdateColumns(
 			map[string]interface{}{
-				"password":  u.Password,
-				"email":     u.Email,
-				"update_at": time.Now(),
+				"password":     u.Password,
+				"email":        u.Email,
+				"bio":          u.Bio,
+				"relationship": u.Relationship,
+				"gender":       u.Gender,
+				"update_at":    time.Now(),
 			},
 		)
 	}

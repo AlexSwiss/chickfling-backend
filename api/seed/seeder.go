@@ -3,20 +3,26 @@ package seed
 import (
 	"log"
 
+	"github.com/AlexSwiss/chickfling/api/models"
 	"github.com/jinzhu/gorm"
-	"github.com/victorsteven/forum/api/models"
 )
 
 var users = []models.User{
 	models.User{
-		Username: "steven",
-		Email:    "steven@example.com",
-		Password: "password",
+		Username:     "steven",
+		Email:        "steven@example.com",
+		Bio:          "A calm reserved guy who is very smart",
+		Gender:       "male",
+		Relationship: "complicated",
+		Password:     "password",
 	},
 	models.User{
-		Username: "martin",
-		Email:    "luther@example.com",
-		Password: "password",
+		Username:     "martin",
+		Email:        "luther@example.com",
+		Bio:          "A motivated and focused girl who is very intelligent",
+		Gender:       "male",
+		Relationship: "single",
+		Password:     "password",
 	},
 }
 

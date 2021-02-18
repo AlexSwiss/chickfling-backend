@@ -6,11 +6,11 @@ import (
 	"io/ioutil"
 	"net/http"
 
+	"github.com/AlexSwiss/chickfling/api/auth"
+	"github.com/AlexSwiss/chickfling/api/models"
+	"github.com/AlexSwiss/chickfling/api/security"
+	"github.com/AlexSwiss/chickfling/api/utils/formaterror"
 	"github.com/gin-gonic/gin"
-	"github.com/victorsteven/forum/api/auth"
-	"github.com/victorsteven/forum/api/models"
-	"github.com/victorsteven/forum/api/security"
-	"github.com/victorsteven/forum/api/utils/formaterror"
 	"golang.org/x/crypto/bcrypt"
 )
 
