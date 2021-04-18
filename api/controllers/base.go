@@ -5,9 +5,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/AlexSwiss/chickfling/api/middlewares"
+	"github.com/AlexSwiss/prentice/api/middlewares"
 
-	"github.com/AlexSwiss/chickfling/api/models"
+	"github.com/AlexSwiss/prentice/api/models"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"    //mysql database driver

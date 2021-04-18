@@ -4,7 +4,7 @@ import (
 	"log"
 	"testing"
 
-	"github.com/AlexSwiss/chickfling/api/models"
+	"github.com/AlexSwiss/prentice/api/models"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/stretchr/testify/assert"
 )

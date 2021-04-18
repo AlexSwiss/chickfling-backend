@@ -6,10 +6,10 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/AlexSwiss/chickfling/api/auth"
-	"github.com/AlexSwiss/chickfling/api/models"
-	"github.com/AlexSwiss/chickfling/api/security"
-	"github.com/AlexSwiss/chickfling/api/utils/formaterror"
+	"github.com/AlexSwiss/prentice/api/auth"
+	"github.com/AlexSwiss/prentice/api/models"
+	"github.com/AlexSwiss/prentice/api/security"
+	"github.com/AlexSwiss/prentice/api/utils/formaterror"
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -87,7 +87,8 @@ func (server *Server) SignIn(email, password string) (map[string]interface{}, er
 	userData["id"] = user.ID
 	userData["email"] = user.Email
 	userData["avatar_path"] = user.AvatarPath
-	userData["username"] = user.Username
+	userData["firstname"] = user.Firstname
+	userData["lastname"] = user.Lastname
 
 	return userData, nil
 }

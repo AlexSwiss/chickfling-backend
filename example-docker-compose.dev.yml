@@ -11,12 +11,12 @@ services:
     volumes:              # without this volume mapping to the directory of our project, live reloading wont happen
       - .:/usr/src/app
     depends_on:
-      - chickfling-postgres # This service depends on postgres. Start that first.
-      # - chickfling-mysql # This service depends on mysql. Start that first.
+      - prentice-postgres # This service depends on postgres. Start that first.
+      # - prentice-mysql # This service depends on mysql. Start that first.
     networks:
-      - chickfling
+      - prentice
 
-  chickfling-postgres:
+  prentice-postgres:
     image: postgres:latest
     container_name: full_db_postgres
     environment:
@@ -29,7 +29,7 @@ services:
     volumes:
       - database_postgres:/var/lib/postgresql/data
     networks:
-      - chickfling
+      - prentice
     
   pgadmin:
     image: dpage/pgadmin4
@@ -38,15 +38,15 @@ services:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     depends_on:
-      - chickfling-postgres
+      - prentice-postgres
     ports:
       - "5050:80"
     networks:
-      - chickfling
+      - prentice
     restart: unless-stopped
 
   
-  # chickfling-mysql:
+  # prentice-mysql:
   #   image: mysql:5.7
   #   container_name: full_db_mysql
   #   ports: 
@@ -60,13 +60,13 @@ services:
   #   volumes:
   #     - database_mysql:/var/lib/mysql
   #   networks:
-  #     - chickfling
+  #     - prentice
   
   # phpmyadmin:
   #   image: phpmyadmin/phpmyadmin
   #   container_name: phpmyadmin_container
   #   depends_on:
-  #     - chickfling-mysql
+  #     - prentice-mysql
   #   environment:
   #     - PMA_HOST=mysql # Note the "mysql". Must be the name of the what you used as the mysql service.
   #     - PMA_USER=${DB_USER}
@@ -76,7 +76,7 @@ services:
   #     - 9090:80
   #   restart: always
   #   networks:
-  #     - chickfling
+  #     - prentice
 
 
 volumes:
@@ -86,6 +86,6 @@ volumes:
 
 # Networks to be created to facilitate communication between containers
 networks:
-  chickfling:
+  prentice:
     driver: bridge
 

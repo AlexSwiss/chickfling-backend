@@ -7,10 +7,10 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/AlexSwiss/chickfling/api/mailer"
-	"github.com/AlexSwiss/chickfling/api/models"
-	"github.com/AlexSwiss/chickfling/api/security"
-	"github.com/AlexSwiss/chickfling/api/utils/formaterror"
+	"github.com/AlexSwiss/prentice/api/mailer"
+	"github.com/AlexSwiss/prentice/api/models"
+	"github.com/AlexSwiss/prentice/api/security"
+	"github.com/AlexSwiss/prentice/api/utils/formaterror"
 	"github.com/gin-gonic/gin"
 )
 

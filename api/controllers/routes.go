@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"github.com/AlexSwiss/chickfling/api/middlewares"
+	"github.com/AlexSwiss/prentice/api/middlewares"
 )
 
 func (s *Server) initializeRoutes() {
@@ -23,6 +23,15 @@ func (s *Server) initializeRoutes() {
 		v1.PUT("/users/:id", middlewares.TokenAuthMiddleware(), s.UpdateUser)
 		v1.PUT("/avatar/users/:id", middlewares.TokenAuthMiddleware(), s.UpdateAvatar)
 		v1.DELETE("/users/:id", middlewares.TokenAuthMiddleware(), s.DeleteUser)
+
+		// courses routes
+		v1.POST("/courses", s.CreateCourse)
+		// The user of the app have no business getting all the users.
+		v1.GET("/courses", s.GetCourses)
+		v1.GET("/courses/:id", s.GetCourse)
+		v1.PUT("/courses/:id", middlewares.TokenAuthMiddleware(), s.UpdateCourse)
+		//v1.PUT("/avatar/users/:id", middlewares.TokenAuthMiddleware(), s.UpdateAvatar)
+		v1.DELETE("/courses/:id", middlewares.TokenAuthMiddleware(), s.DeleteCourse)
 
 		//Posts routes
 		v1.POST("/posts", middlewares.TokenAuthMiddleware(), s.CreatePost)

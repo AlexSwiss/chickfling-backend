@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/AlexSwiss/chickfling/api/auth"
-	"github.com/AlexSwiss/chickfling/api/models"
-	"github.com/AlexSwiss/chickfling/api/utils/formaterror"
+	"github.com/AlexSwiss/prentice/api/auth"
+	"github.com/AlexSwiss/prentice/api/models"
+	"github.com/AlexSwiss/prentice/api/utils/formaterror"
 	"github.com/gin-gonic/gin"
 )
 

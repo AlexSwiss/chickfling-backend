@@ -10,21 +10,10 @@ var err error
 
 func FormatError(errString string) map[string]string {
 
-	if strings.Contains(errString, "username") {
-		errorMessages["Taken_username"] = "Username Already Taken"
+	if strings.Contains(errString, "name") {
+		errorMessages["Taken_username"] = "name Already Taken"
 	}
 
-	if strings.Contains(errString, "email") {
-		errorMessages["Taken_email"] = "Email Already Taken"
-
-	}
-	if strings.Contains(errString, "title") {
-		errorMessages["Taken_title"] = "Title Already Taken"
-
-	}
-	if strings.Contains(errString, "hashedPassword") {
-		errorMessages["Incorrect_password"] = "Incorrect Password"
-	}
 	if strings.Contains(errString, "record not found") {
 		errorMessages["No_record"] = "No Record Found"
 	}

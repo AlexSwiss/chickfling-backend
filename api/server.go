@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/AlexSwiss/chickfling/api/controllers"
+	"github.com/AlexSwiss/prentice/api/controllers"
 	"github.com/joho/godotenv"
 )
 

@@ -9,8 +9,8 @@ import (
 	"github.com/jinzhu/gorm"
 	"github.com/joho/godotenv"
 
-	"github.com/AlexSwiss/chickfling/api/controllers"
-	"github.com/AlexSwiss/chickfling/api/models"
+	"github.com/AlexSwiss/prentice/api/controllers"
+	"github.com/AlexSwiss/prentice/api/models"
 )
 
 var server = controllers.Server{}
@@ -37,7 +37,7 @@ func TestMain(m *testing.M) {
 //When using CircleCI
 func CIBuild() {
 	var err error
-	DBURL := fmt.Sprintf("host=%s port=%s user=%s dbname=%s sslmode=disable password=%s", "127.0.0.1", "5432", "steven", "chickfling_db_test", "password")
+	DBURL := fmt.Sprintf("host=%s port=%s user=%s dbname=%s sslmode=disable password=%s", "127.0.0.1", "5432", "steven", "prentice_db_test", "password")
 	server.DB, err = gorm.Open("postgres", DBURL)
 	if err != nil {
 		fmt.Printf("Cannot connect to %s database\n", "postgres")

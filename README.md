@@ -1,7 +1,7 @@
-### chickfling-App-Go-Backend  [![CircleCI](https://circleci.com/gh/AlexSwiss/chickfling-App-Go-Backend.svg?style=svg)](https://circleci.com/gh/AlexSwiss/chickfling-App-Go-Backend)
+### prentice-App-Go-Backend  [![CircleCI](https://circleci.com/gh/AlexSwiss/prentice-App-Go-Backend.svg?style=svg)](https://circleci.com/gh/AlexSwiss/prentice-App-Go-Backend)
  
 
-> This is a chickfling API built with Golang
+> This is a prentice API built with Golang
 
 ## Getting Started
 
@@ -27,7 +27,7 @@
 
 ### Clone
 
-- Clone this project to your local machine `https://github.com/AlexSwiss/chickfling-App-Go-Backend.git`
+- Clone this project to your local machine `https://github.com/AlexSwiss/prentice-App-Go-Backend.git`
 
 
 ### Setup
@@ -52,7 +52,7 @@
 
   - Set the DB_HOST as follows in the .env file
     ```shell
-      $ DB_HOST=chickfling-postgres 
+      $ DB_HOST=prentice-postgres 
     ```    
   ##### For Local Development:
   - Create a Dockerfile file in the root directory

@@ -3,7 +3,7 @@ package middlewares
 import (
 	"net/http"
 
-	"github.com/AlexSwiss/chickfling/api/auth"
+	"github.com/AlexSwiss/prentice/api/auth"
 	"github.com/gin-gonic/gin"
 )
 

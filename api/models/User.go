@@ -8,23 +8,28 @@ import (
 	"strings"
 	"time"
 
-	"github.com/AlexSwiss/chickfling/api/security"
+	"github.com/AlexSwiss/prentice/api/security"
 
 	"github.com/badoux/checkmail"
 	"github.com/jinzhu/gorm"
 )
 
 type User struct {
-	ID           uint32    `gorm:"primary_key;auto_increment" json:"id"`
-	Username     string    `gorm:"size:255;not null;unique" json:"username"`
-	Email        string    `gorm:"size:100;not null;unique" json:"email"`
-	Bio          string    `gorm:"size:355;not null;" json:"bio"`
-	Gender       string    `gorm:"size:100;not null;" json:"gender"`
-	Relationship string    `gorm:"size:100;not null;" json:"relationship"`
-	Password     string    `gorm:"size:100;not null;" json:"password"`
-	AvatarPath   string    `gorm:"size:255;null;" json:"avatar_path"`
-	CreatedAt    time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"created_at"`
-	UpdatedAt    time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"updated_at"`
+	ID         uint32    `gorm:"primary_key;auto_increment" json:"id"`
+	Firstname  string    `gorm:"size:255;not null;unique" json:"firstname"`
+	Lastname   string    `gorm:"size:255;not null;unique" json:"lastname"`
+	Gender     string    `gorm:"size:255;not null;unique" json:"gender"`
+	Phone      string    `gorm:"size:100;not null;" json:"phone"`
+	Email      string    `gorm:"size:100;not null;unique" json:"email"`
+	Country    string    `gorm:"size:355;not null;" json:"country"`
+	State      string    `gorm:"size:100;not null;" json:"state"`
+	City       string    `gorm:"size:100;not null;" json:"city"`
+	Area       string    `gorm:"size:100;not null;" json:"area"`
+	Password   string    `gorm:"size:100;not null;" json:"password"`
+	Position   string    `gorm:"size:255;not null;unique" json:"position"`
+	AvatarPath string    `gorm:"size:255;null;" json:"avatar_path"`
+	CreatedAt  time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"created_at"`
+	UpdatedAt  time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"updated_at"`
 }
 
 func (u *User) BeforeSave() error {
@@ -37,11 +42,16 @@ func (u *User) BeforeSave() error {
 }
 
 func (u *User) Prepare() {
-	u.Username = html.EscapeString(strings.TrimSpace(u.Username))
-	u.Email = html.EscapeString(strings.TrimSpace(u.Email))
-	u.Bio = html.EscapeString(strings.TrimSpace(u.Bio))
+	u.Firstname = html.EscapeString(strings.TrimSpace(u.Firstname))
+	u.Lastname = html.EscapeString(strings.TrimSpace(u.Lastname))
 	u.Gender = html.EscapeString(strings.TrimSpace(u.Gender))
-	u.Relationship = html.EscapeString(strings.TrimSpace(u.Relationship))
+	u.Phone = html.EscapeString(strings.TrimSpace(u.Phone))
+	u.Email = html.EscapeString(strings.TrimSpace(u.Email))
+	u.Country = html.EscapeString(strings.TrimSpace(u.Country))
+	u.State = html.EscapeString(strings.TrimSpace(u.State))
+	u.City = html.EscapeString(strings.TrimSpace(u.City))
+	u.Area = html.EscapeString(strings.TrimSpace(u.Area))
+	u.Position = html.EscapeString(strings.TrimSpace(u.Position))
 	u.CreatedAt = time.Now()
 	u.UpdatedAt = time.Now()
 }
@@ -102,17 +112,41 @@ func (u *User) Validate(action string) map[string]string {
 			}
 		}
 	default:
-		if u.Username == "" {
-			err = errors.New("Required Username")
-			errorMessages["Required_username"] = err.Error()
+		if u.Firstname == "" {
+			err = errors.New("Required Firstname")
+			errorMessages["Required_firstname"] = err.Error()
 		}
-		if u.Bio == "" {
-			err = errors.New("Enter your bio")
-			errorMessages["Required_bio"] = err.Error()
+		if u.Lastname == "" {
+			err = errors.New("Required Lastname")
+			errorMessages["Required_lastname"] = err.Error()
 		}
 		if u.Gender == "" {
-			err = errors.New("whats your gender?")
+			err = errors.New("Enter your gender")
 			errorMessages["Required_gender"] = err.Error()
+		}
+		if u.Phone == "" {
+			err = errors.New("Enter your phone number")
+			errorMessages["Required_phone"] = err.Error()
+		}
+		if u.Country == "" {
+			err = errors.New("whats your counry?")
+			errorMessages["Required_country"] = err.Error()
+		}
+		if u.State == "" {
+			err = errors.New("whats your state?")
+			errorMessages["Required_state"] = err.Error()
+		}
+		if u.City == "" {
+			err = errors.New("whats your city?")
+			errorMessages["Required_city"] = err.Error()
+		}
+		if u.Area == "" {
+			err = errors.New("whats your area?")
+			errorMessages["Required_area"] = err.Error()
+		}
+		if u.Position == "" {
+			err = errors.New("what are you applying as?")
+			errorMessages["Required_position"] = err.Error()
 		}
 		if u.Password == "" {
 			err = errors.New("Required Password")
@@ -181,12 +215,15 @@ func (u *User) UpdateAUser(db *gorm.DB, uid uint32) (*User, error) {
 
 		db = db.Debug().Model(&User{}).Where("id = ?", uid).Take(&User{}).UpdateColumns(
 			map[string]interface{}{
-				"password":     u.Password,
-				"email":        u.Email,
-				"bio":          u.Bio,
-				"relationship": u.Relationship,
-				"gender":       u.Gender,
-				"update_at":    time.Now(),
+				"password":  u.Password,
+				"email":     u.Email,
+				"phone":     u.Phone,
+				"country":   u.Country,
+				"state":     u.State,
+				"city":      u.City,
+				"area":      u.Area,
+				"position":  u.Position,
+				"update_at": time.Now(),
 			},
 		)
 	}

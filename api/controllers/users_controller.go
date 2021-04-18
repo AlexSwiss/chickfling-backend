@@ -7,15 +7,15 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/AlexSwiss/chickfling/api/fileupload"
+	"github.com/AlexSwiss/prentice/api/fileupload"
 
 	"github.com/joho/godotenv"
 	"golang.org/x/crypto/bcrypt"
 
-	"github.com/AlexSwiss/chickfling/api/auth"
-	"github.com/AlexSwiss/chickfling/api/models"
-	"github.com/AlexSwiss/chickfling/api/security"
-	"github.com/AlexSwiss/chickfling/api/utils/formaterror"
+	"github.com/AlexSwiss/prentice/api/auth"
+	"github.com/AlexSwiss/prentice/api/models"
+	"github.com/AlexSwiss/prentice/api/security"
+	"github.com/AlexSwiss/prentice/api/utils/formaterror"
 	"github.com/gin-gonic/gin"
 )
 
@@ -309,13 +309,13 @@ func (server *Server) UpdateUser(c *gin.Context) {
 			return
 		}
 		//update both the password and the email
-		newUser.Username = formerUser.Username //remember, you cannot update the username
+		newUser.Firstname = formerUser.Firstname //remember, you cannot update the username
 		newUser.Email = requestBody["email"]
 		newUser.Password = requestBody["new_password"]
 	}
 
 	//The password fields not entered, so update only the email
-	newUser.Username = formerUser.Username
+	newUser.Firstname = formerUser.Firstname
 	newUser.Email = requestBody["email"]
 
 	newUser.Prepare()

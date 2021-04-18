@@ -27,13 +27,13 @@ type EmailResponse struct {
 func (s *sendMail) SendResetPassword(ToUser string, FromAdmin string, Token string, Sendgridkey string, AppEnv string) (*EmailResponse, error) {
 	h := hermes.Hermes{
 		Product: hermes.Product{
-			Name: "ChickFling",
-			Link: "https://ChickFling.com",
+			Name: "prentice",
+			Link: "https://prentice.com",
 		},
 	}
 	var forgotUrl string
 	if os.Getenv("APP_ENV") == "production" {
-		forgotUrl = "https://ChickFling.com/resetpassword/" + Token //this is the url of the frontend app
+		forgotUrl = "https://prentice.com/resetpassword/" + Token //this is the url of the frontend app
 	} else {
 		forgotUrl = "http://127.0.0.1:3000/resetpassword/" + Token //this is the url of the local frontend app
 	}
@@ -41,7 +41,7 @@ func (s *sendMail) SendResetPassword(ToUser string, FromAdmin string, Token stri
 		Body: hermes.Body{
 			Name: ToUser,
 			Intros: []string{
-				"Welcome to ChickFling! Good to have you here.",
+				"Welcome to prentice! Good to have you here.",
 			},
 			Actions: []hermes.Action{
 				{
@@ -62,7 +62,7 @@ func (s *sendMail) SendResetPassword(ToUser string, FromAdmin string, Token stri
 	if err != nil {
 		return nil, err
 	}
-	from := mail.NewEmail("ChickFling", FromAdmin)
+	from := mail.NewEmail("prentice", FromAdmin)
 	subject := "Reset Password"
 	to := mail.NewEmail("Reset Password", ToUser)
 	message := mail.NewSingleEmail(from, subject, to, emailBody, emailBody)

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/AlexSwiss/chickfling/api"
+	"github.com/AlexSwiss/prentice/api"
 )
 
 func main() {
